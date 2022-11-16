@@ -1,131 +1,26 @@
-<!doctype html>
-<html lang="en" class="h-100">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.1</title>
+{% extends "inc/base.html"%}
 
-    <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+{% block user_block %}
+{% include "inc/login_signup.html" %}
+{% endblock user_block %}
 
-    <!-- Custom styles for this template -->
-    <link href="../static/css/style.css" rel="stylesheet">
-</head>
-<body class="d-flex flex-column h-100">
+{% block content %}
+<!-- List of questions -->
+<h2 class="mb-3">New Questions</h2>
 
-<header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Fixed navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+{% with with_question_link=True with_border="border border-4 rounded-2" %}
+{% for question in questions %}
+{% include "inc/mini_question.html" %}
+{% endfor %}
+{% endwith %}
 
-<!-- Begin page content -->
-<main class="flex-shrink-0">
-    <div class="container">
-        <h1>New Questions</h1>
-        <div class="row">
-            <div class="col-8">
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar">
-                                <img src="../static/img/diper.jpg" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <h2 class="question_title">Question 1</h2>
-                            <div class="question-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores eaque illum minima nam obcaecati omnis quo ratione, soluta tempore.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">sidebar</div>
-        </div>
+{% with page=questions %}
+{% include "inc/pagination.html" %}
+{% endwith %}
+{% endblock content %}
 
-        <div class="row">
-            <div class="col-8">
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar">
-                                <img src="../static/img/rick&morty.jpg" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <h2 class="question_title">Question 2</h2>
-                            <div class="question-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores eaque illum minima nam obcaecati omnis quo ratione, soluta tempore.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-8">
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar">
-                                <img src="../static/img/kick_boot.jpg" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <h2 class="question_title">Question 3</h2>
-                            <div class="question-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores eaque illum minima nam obcaecati omnis quo ratione, soluta tempore.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </div>
-</main>
-
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-    </div>
-</footer>
-
-
-<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-</body>
-</html>
+{% block side_panel %}
+<!-- Links -->
+{% include "inc/tags_list.html" %}
+{% include "inc/members_list.html" %}
+{% endblock side_panel %}
